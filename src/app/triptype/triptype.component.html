@@ -1,0 +1,99 @@
+<div class="trip-planner">
+    <h1 class="tp-title">Plan Your Next Trip</h1>
+    <p class="tp-sub">Fill out the details below to get started.</p>
+
+    <form (ngSubmit)="submitTrip()" #tripForm="ngForm" class="tp-form">
+
+        <div>
+            <label for="start-date">Start Date:</label>
+            <input type="date" id="start-date" name="startDate" [(ngModel)]="inputValues.startDate" required>
+        </div>
+
+        <div>
+            <label for="end-date">End Date:</label>
+            <input type="date" id="end-date" name="endDate" [(ngModel)]="inputValues.endDate" required>
+        </div>
+
+        <div>
+            <label for="trip-type">Trip Type:</label>
+            <select id="trip-type" name="tripType" [(ngModel)]="inputValues.tripType" required>
+                <option value="">--Please choose an option--</option>
+                <option *ngFor="let t of triptype" [value]="t">{{ t }}</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="destination">Destination:</label>
+            <input type="text" id="destination" name="destination" [(ngModel)]="inputValues.destination" placeholder="e.g., Paris, France" required>
+        </div>
+
+        <div>
+            <label for="budget">Budget ($):</label>
+            <input type="number" id="budget" name="budget" [(ngModel)]="inputValues.budget" min="0" step="50" placeholder="e.g., 1500">
+        </div>
+
+        <div class="tp-actions">
+            <button type="submit" [disabled]="loading">{{ loading ? 'Generating...' : 'Submit Plan' }}</button>
+        </div>
+
+    </form>
+
+    <div *ngIf="loading" class="tp-loading">Generating plan, please wait…</div>
+
+    <div *ngIf="error" class="tp-error">Error: {{ error }}</div>
+
+    <div *ngIf="response" class="tp-response">
+        <h2 style="margin-top:20px;">Generated Plan</h2>
+
+        <div *ngIf="response.dayWisePlan">
+            <h3>Day-wise travel plan</h3>
+            <div *ngFor="let d of response.dayWisePlan">
+                <strong>Day {{d.day}}:</strong>
+                <ul>
+                    <li *ngFor="let a of d.activities">{{a}}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div *ngIf="response.accommodationSuggestions">
+            <h3>Accommodation suggestions</h3>
+            <ul>
+                <li *ngFor="let a of response.accommodationSuggestions">{{a}}</li>
+            </ul>
+        </div>
+
+        <div *ngIf="response.localFoodRecommendations">
+            <h3>Local food recommendations</h3>
+            <ul>
+                <li *ngFor="let f of response.localFoodRecommendations">{{f}}</li>
+            </ul>
+        </div>
+
+        <div *ngIf="response.packingChecklist">
+            <h3>Packing checklist</h3>
+            <ul>
+                <li *ngFor="let p of response.packingChecklist">{{p}}</li>
+            </ul>
+        </div>
+
+        <div *ngIf="response.travelSafetyTips">
+            <h3>Travel safety tips</h3>
+            <ul>
+                <li *ngFor="let t of response.travelSafetyTips">{{t}}</li>
+            </ul>
+        </div>
+
+        <div *ngIf="response.estimatedCostBreakdown" class="tp-cost">
+            <h3>Estimated cost breakdown</h3>
+            <table>
+                <tr><td>Transportation</td><td>{{ response.estimatedCostBreakdown.transportation }}</td></tr>
+                <tr><td>Accommodation</td><td>{{ response.estimatedCostBreakdown.accommodation }}</td></tr>
+                <tr><td>Food</td><td>{{ response.estimatedCostBreakdown.food }}</td></tr>
+                <tr><td>Activities</td><td>{{ response.estimatedCostBreakdown.activities }}</td></tr>
+                <tr class="total"><td>Total</td><td>{{ response.estimatedCostBreakdown.total }}</td></tr>
+            </table>
+        </div>
+
+    </div>
+
+</div>

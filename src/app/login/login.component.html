@@ -1,0 +1,29 @@
+<div class="login-container">
+  <h2>Login to your To-Do Account</h2>
+  
+  <form>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" [(ngModel)]="userdata.username" required> 
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" [(ngModel)]="userdata.email" required> 
+    </div>
+
+    <div class="form-group">
+      <label for="contact">Contact</label>
+      <input type="tel" id="contact" name="contact" [(ngModel)]="userdata.contact" required> 
+    </div>
+    
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" [(ngModel)]="userdata.password" required>
+    </div>
+    
+    <button type="button" (click)="loginuser()">Log In</button>
+  </form>
+  
+  <p>Don't have an account? <a href="#">Register here</a></p>
+</div>

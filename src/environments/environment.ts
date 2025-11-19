@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // Add your Gemini/Generative API configuration here.
+  // Set `geminiEndpoint` to your API URL, and `geminiApiKey` to your key.
+  // Example (do NOT commit real keys to source control):
+  // geminiEndpoint: 'https://generativelanguage.googleapis.com/v1beta2/models/gemini-2.5-pro:generateText',
+  // geminiApiKey: 'YOUR_API_KEY_HERE'
 };
 
 /*
