@@ -1,3 +1,49 @@
+# Trip-Planner (Angular)
+
+This project is a simple Angular app that generates travel plans using a generative model (Gemini).
+
+Quick start
+
+1. Install dependencies
+
+```cmd
+cd c:\Users\Neha Parab-PC\OneDrive\Desktop\code\angular-todo-app
+npm install
+```
+
+2. Configure your Gemini API credentials (do NOT commit real keys)
+
+- Copy `.env.example` to `.env` and fill in `GEMINI_ENDPOINT` and `GEMINI_API_KEY`.
+- Alternatively, add values to `src/environments/environment.ts` locally (keep keys out of source control).
+
+Example (development): edit `src/environments/environment.ts` and add:
+
+```ts
+export const environment = {
+  production: false,
+  geminiEndpoint: process.env.GEMINI_ENDPOINT || 'https://generativelanguage.googleapis.com/v1beta2/models/gemini-2.5-pro:generateText',
+  geminiApiKey: process.env.GEMINI_API_KEY || ''
+};
+```
+
+3. Run the dev server
+
+```cmd
+npm start
+```
+
+Open `http://localhost:4200` and navigate to the trip planner page.
+
+Notes
+- The app currently contains a mocked fallback response if no Gemini endpoint/key are configured.
+- Do not commit API keys. Use `.env` or CI secrets for production.
+- If you want the service to send the API key as a query parameter (`?key=`) instead of Bearer, update `ServicenameService` accordingly.
+
+Security
+- If you accidentally commit a secret, rotate the key immediately.
+
+Contact
+- Repository: https://github.com/nehaparab25/Trip-Planner
 # AngularTodoApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.13.

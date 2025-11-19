@@ -44,3 +44,10 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Local environment files (do NOT commit secrets)
+.env
+.env.*
+
+# Local Angular environment overrides (optional)
+src/environments/*.local.ts
